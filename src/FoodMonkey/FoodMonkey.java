@@ -226,12 +226,6 @@ public class FoodMonkey {
 
         System.out.println("Your order: " + mCode +" " + mName + " -- " + mDescription + " " + mPrice + " Baht");
 
-        try{
-            abCoffee.addCartDetail(numOfCart, mCode, mName, mDescription, mPrice);
-        }catch(Exception e){
-            System.out.println("Error : Can't add item into your shopping cart");
-        }
-
         String conChar = input("Do you want to checkout? [Y:Yes, N: No]:");
         if(conChar.toUpperCase().equals("Y")){
             String uName = input("Please Enter Username : ");
