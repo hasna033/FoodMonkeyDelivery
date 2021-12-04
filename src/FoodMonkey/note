@@ -1,0 +1,55 @@
+public static void abCoffee(){
+
+        boolean conFlg = true;
+        ABCoffee abCoffee = new ABCoffee();
+        abCoffee.printMenu();
+        System.out.println("-----------------------------------------------------------");
+        do{
+            String mCode = input("Please enter menu code:");
+            String mName = abCoffee.menuName(mCode);
+            String mDescription = abCoffee.menuDescription(mCode);
+            double mPrice = abCoffee.costCalculate(mCode);
+            System.out.println("Your order: " + mCode +" " + mName + " -- " + mDescription + " " + mPrice + " Baht");
+
+            try{
+                abCoffee.addCartDetail(numOfCart, mCode, mName, mDescription, mPrice);
+            }catch(Exception e){
+                System.out.println("Error : Can't add item into your shopping cart");
+            }
+
+
+            String conChar = input("Do you want to add any book [Y:Yes, N: No]:");
+            if(!conChar.toUpperCase().equals("Y")){conFlg = false;}
+            System.out.println();
+        }while(conFlg == true);
+        numOfCart += 1;
+
+        int shopIndex = 1;
+        try {
+            System.out.println("Purchase a shopping cart");
+            shoppingCart = abCoffee.getShoppingCart(shopIndex);
+            uItems = new ArrayList();
+            uItems = shoppingCart.getShoppingCart();
+
+            Iterator i = uItems.iterator();
+            System.out.println("");
+            System.out.println("Code\t\t\tName\t\t\tDescription\t\t\tPrice");
+            System.out.println("-------------------------------------------------------------------");
+            int j = 1;
+            while (i.hasNext()) {
+                ABCoffee m = (ABCoffee) i.next();
+                System.out.println(j + " " + m.getCode() + "\t\t" + m.getName() + "\t\t"+ m.getDescription() + "\t\t" + m.getPrice());
+                j++;
+            }
+            System.out.println("-------------------------------------------------------------------");
+        }catch (Exception e){
+            System.out.println("Error: Incorrect shopping cart number --> " + (shopIndex+1) + "\n");
+        }
+
+
+
+
+
+
+
+    }
